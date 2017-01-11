@@ -20,14 +20,22 @@
   };
   firebase.initializeApp(config);
 
-  var messaging = firebase.messaging();
-  messaging.requestPermission().then(function(){
-    return messaging.getToken();
-  }).then(function(token){
-    console.log(token);
-  }).catch(function(e){
-    console.log(e);
-  });    
+  // service worker
+  navigator.serviceWorker.register('./firebase-messaging-sw.js').then(function(){
+    return navigator.serviceWorker.ready;
+  }).then(function(serviceWorkerRegistration) {
+    var messaging = firebase.messaging();
+    messaging.useServiceWorker(serviceWorkerRegistration);
+    messaging.requestPermission().then(function(){
+      return messaging.getToken();
+    }).then(function(token){
+      console.log(token);
+    }).catch(function(e){
+      console.log(e);
+    });        
+  });
+
+
 </script>
 </body>
 </html>
