@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Web push with Firebase</title>
+  <link rel="manifest" href="./manifest.json">
+</head>
+<body>
+<h1>Web push with Firebase</h1>
+
+
+<script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+  apiKey: "AIzaSyBx2QNKrgAnmgp_u8BNCpxFBr4TvTUK98Q",
+  authDomain: "fcm-push-demo-5ca15.firebaseapp.com",
+  databaseURL: "https://fcm-push-demo-5ca15.firebaseio.com",
+  storageBucket: "fcm-push-demo-5ca15.appspot.com",
+  messagingSenderId: "657954345590"
+  };
+  firebase.initializeApp(config);
+
+  var messaging = firebase.messaging();
+  messaging.requestPermission().then(function(){
+    return messaging.getToken();
+  }).then(function(token){
+    console.log(token);
+  }).catch(function(e){
+    console.log(e);
+  });    
+</script>
+</body>
+</html>

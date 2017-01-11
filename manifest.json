@@ -1,0 +1,13 @@
+{
+    "name": "Web push with Firebase",
+    "short_name": "FCM",
+    "icons": [{
+        "src": "img/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    }],
+    "start_url": "/index.html",
+    "display": "standalone",
+    "gcm_sender_id": "253004815854",
+    "gcm_user_visible_only": true
+}
